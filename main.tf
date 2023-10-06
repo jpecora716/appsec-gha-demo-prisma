@@ -21,10 +21,21 @@ resource "aws_s3_bucket" "example" {
   bucket = "company-${each.key}"
 }
 
-
 resource "aws_s3_bucket_public_access_block" "example" {
   for_each = local.companylist
   bucket = aws_s3_bucket.example[each.key].id
+  block_public_acls   = false
+  block_public_policy = false
+}
+
+resource "aws_s3_bucket" "financials" {
+  for_each = local.companylist
+  bucket = "company-financials-${each.key}"
+}
+
+resource "aws_s3_bucket_public_access_block" "financials" {
+  for_each = local.companylist
+  bucket = aws_s3_bucket.financials[each.key].id
   block_public_acls   = false
   block_public_policy = false
 }
