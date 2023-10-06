@@ -6,7 +6,7 @@ on:
 env:
   TF_CLOUD_ORGANIZATION: "jpecora-demo"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
-  TF_WORKSPACE: "s3-appsec-demo"
+  TF_WORKSPACE: "s3-appsec-demo-prisma"
   CONFIG_DIRECTORY: "./"
 
 jobs:
