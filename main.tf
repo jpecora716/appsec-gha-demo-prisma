@@ -64,12 +64,23 @@ resource "aws_s3_bucket_public_access_block" "financials" {
 
 resource "aws_s3_bucket" "hr" {
   for_each = local.companylist
-  bucket = "company-humanresources-${each.key}"
+  bucket   = "company-humanresources-${each.key}"
+  tags = {
+    git_commit           = "9a7a8728a23d2ffd855c3eec552b407cd2aeb3c5"
+    git_file             = "main.tf"
+    git_last_modified_at = "2023-10-08 23:54:35"
+    git_last_modified_by = "jpecora@paloaltonetworks.com"
+    git_modifiers        = "jpecora"
+    git_org              = "jpecora716"
+    git_repo             = "appsec-gha-demo-prisma"
+    yor_name             = "hr"
+    yor_trace            = "ba00b4dc-1bf7-453c-8022-cc519f029a26"
+  }
 }
 
 resource "aws_s3_bucket_public_access_block" "hr" {
-  for_each = local.companylist
-  bucket = aws_s3_bucket.hr[each.key].id
+  for_each            = local.companylist
+  bucket              = aws_s3_bucket.hr[each.key].id
   block_public_acls   = false
   block_public_policy = false
 }
